@@ -81,6 +81,35 @@ int
 sys_pgaccess(void)
 {
   // lab pgtbl: your code here.
+  struct proc *p = myproc();
+  if(p == 0){
+    return -1;
+  }
+
+  uint64 va_s;      // va start
+  int num;          // total page num
+  int result_addr;  // result
+  if(argaddr(0,&va_s)<0){
+    return -1;
+  }
+  if(argint(1,&num)<0){
+    return -1;
+  }
+  if(argint(2,&result_addr)<0){
+    return -1;
+  }
+  if(num>32||num<=0){
+    return -1;
+  }
+  int res = 0;
+  for(int i = 0;i<num; i++){
+    uint64 va = va_s + (uint64)PGSIZE*i;
+    int bits = pgaccess(p->pagetable,(uint64)va);
+    res |= (bits << i);
+  }
+  if(copyout(p->pagetable, result_addr,(char*)&res,sizeof(res))<0){
+    return -1;
+  }
   return 0;
 }
 #endif
