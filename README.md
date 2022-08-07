@@ -11,4 +11,4 @@
 - multithreading
 - file system
 
-分支`lock`,`mmap`,`riscv`暂时还未完成，其余分支有关实验部分的代码已经完成，均可通过`make grade`,实验过程中的解题思路和有关的OS知识均在文件[labs-log.md](./labs-log.md)中
+分支`lock`,`mmap`,`riscv`暂时还未完成，其余分支有关实验部分的代码已经完成，均可通过`make grade`,实验过程中的解题思路和有关的OS知识均在文件[labs-note.md](./labs-note.md)中
